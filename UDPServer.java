@@ -1,5 +1,6 @@
 // import de classes
 import java.net.*;
+import javax.swing.JOptionPane;
 
 public class UDPServer {
 
@@ -26,14 +27,14 @@ public class UDPServer {
                 // extrai os dados recebidos
                 String receivedMessage = new String(receivedPacket.getData());
 
-                System.out.println("Received message: " + receivedMessage);
+                JOptionPane.showMessageDialog(null, receivedMessage, "Client", JOptionPane.INFORMATION_MESSAGE);
 
                 // endereco do cliente
                 InetAddress clientIpAddress = receivedPacket.getAddress();
                 int clientPort = receivedPacket.getPort();
 
                 // mensagem de resposta
-                String responseMessage = "Packet received";
+                String responseMessage = JOptionPane.showInputDialog("Mensagem de resposta:");
                 byte[] responseData = responseMessage.getBytes();
 
                 // pacote de resposta
