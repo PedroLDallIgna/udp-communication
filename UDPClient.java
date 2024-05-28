@@ -24,6 +24,20 @@ public class UDPClient {
             // envia o pacote
             clientSocket.send(sendPacket);
 
+            // buffer para mensagem
+            byte[] responseData = new byte[1024];
+
+            // datagrama de pacote de resposta
+            DatagramPacket responsePacket = new DatagramPacket(responseData, responseData.length);
+
+            // recebe o pacote de resposta
+            clientSocket.receive(responsePacket);
+
+            // extrai os dados de resposta
+            String responseMessage = new String(responsePacket.getData());
+
+            System.out.println(responseMessage);
+
             // fecha a conexao
             clientSocket.close();
         } catch (Exception e) {
