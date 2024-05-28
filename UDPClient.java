@@ -1,4 +1,5 @@
 import java.net.*;
+import javax.swing.JOptionPane;
 
 public class UDPClient {
     
@@ -14,7 +15,7 @@ public class UDPClient {
             InetAddress serverIpAddress = InetAddress.getByName(serverAddress);
 
             // mensagem a ser enviada
-            String message = "Hello World!";
+            String message = JOptionPane.showInputDialog("Mensagem:");
             // mensagem convertida para bytes
             byte[] sendData = message.getBytes();
 
@@ -36,7 +37,8 @@ public class UDPClient {
             // extrai os dados de resposta
             String responseMessage = new String(responsePacket.getData());
 
-            System.out.println(responseMessage);
+            // mostra a resposta recebida
+            JOptionPane.showMessageDialog(null, responseMessage, "Server", JOptionPane.INFORMATION_MESSAGE);
 
             // fecha a conexao
             clientSocket.close();
